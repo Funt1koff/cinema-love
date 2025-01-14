@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
+
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
@@ -45,6 +47,11 @@ dependencies {
 kotlin {
 	compilerOptions {
 		freeCompilerArgs.addAll("-Xjsr305=strict")
+	}
+}
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+	kotlinOptions {
+		jvmTarget = "21"
 	}
 }
 
