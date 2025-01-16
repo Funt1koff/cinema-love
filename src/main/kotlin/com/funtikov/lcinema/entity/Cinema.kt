@@ -20,8 +20,8 @@ abstract class Cinema(
     @Column(name = "release_date", nullable = false, updatable = false)
     var releaseDate: Int? = null,
 
-    @Column(name = "avgDuration", nullable = false, updatable = false)
-    var avgDuration: Int? = null,
+    @Column(name = "avg_duration", nullable = false, updatable = false)
+    var avgDurationInSec: Int? = null,
 
     @Column(name = "rating", nullable = false)
     var rating: Double? = null,
