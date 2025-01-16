@@ -5,18 +5,24 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "genre")
 class Genre(
-        @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
-        @SequenceGenerator(name = "genre_id_seq", sequenceName = "genre_id_seq", allocationSize = 1)
-        var id: Long? = null,
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "genre_id_seq", sequenceName = "genre_id_seq", allocationSize = 1)
+    var id: Long? = null,
 
-        @Column(name = "title", nullable = false, unique = true)
-        var title: String? = null,
+    @Column(name = "title", nullable = false, unique = true)
+    var title: String? = null,
 
-        @Column(name = "view_count")
-        var viewCount: Long? = 0,
+    @Column(name = "view_count")
+    var viewCount: Long? = 0,
 
-        @Column(name = "favorite_added_count")
-        var favoriteAddedCount: Long? = 0
+    @Column(name = "favorite_added_count")
+    var favoriteAddedCount: Long? = 0,
+
+    @ManyToMany(mappedBy = "genreViews")
+    var viewersViewed: MutableList<Viewer> = mutableListOf(),
+
+    @ManyToMany(mappedBy = "genreFavorites")
+    var viewersFavorited: MutableList<Viewer> = mutableListOf()
 
 )

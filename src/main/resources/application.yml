@@ -1,0 +1,24 @@
+# Spring
+spring:
+  application:
+    name: CinemaLove
+    version: 0.0.1-SNAPSHOT
+  main:
+    allow-circular-references: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/lcinema}
+    username: ${DB_USER:abuser}
+    password: ${DB_PASSWORD:abuser}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+
+# Logging
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE
+    org.springframework.orm.jpa: TRACE
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari: TRACE

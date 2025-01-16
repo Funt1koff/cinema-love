@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CinemaLoveApplication
 
 fun main(args: Array<String>) {
-	runApplication<CinemaLoveApplication>(*args)
+    runApplication<CinemaLoveApplication>(*args)
 }
