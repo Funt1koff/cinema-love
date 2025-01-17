@@ -12,6 +12,9 @@ data class Viewer(
     @SequenceGenerator(name = "viewer_id_seq", sequenceName = "viewer_id_seq", allocationSize = 1)
     val id: Long? = null,
 
+    @Column(name = "username", unique = true, nullable = false, updatable = false, insertable = false)
+    val username: String? = null,
+
     @Column(name = "first_name")
     var firstName: String? = null,
 

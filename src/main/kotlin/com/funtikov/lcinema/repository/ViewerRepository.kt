@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ViewerRepository : JpaRepository<Viewer, Long>
+interface ViewerRepository : JpaRepository<Viewer, Long> {
+    fun findByUsername(username: String): Viewer
+}
