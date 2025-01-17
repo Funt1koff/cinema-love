@@ -8,6 +8,7 @@ import com.funtikov.lcinema.service.NotificationService
 import com.funtikov.lcinema.service.SelectionEventService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -18,7 +19,7 @@ import java.time.LocalDateTime
 class SelectionEventServiceImpl(
     val selectionEventRepository: SelectionEventRepository,
     val viewerRepository: ViewerRepository,
-    val notificationService: NotificationService
+    @Qualifier("sseNotificationService") val sseNotificationService: NotificationService
 ) : SelectionEventService {
 
     val log: Logger = LoggerFactory.getLogger(SelectionEventServiceImpl::class.java)
@@ -49,7 +50,7 @@ class SelectionEventServiceImpl(
         val creatorUsername = invitedSelectionEvent.creator.username
         val message = "User ${viewerUsername.username} has confirm your invite!"
         if (creatorUsername != null) {
-            notificationService.notifyUser(creatorUsername, message)
+            sseNotificationService.notifyUser(creatorUsername, message)
         }
         return invitedSelectionEvent
     }
