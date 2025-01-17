@@ -21,4 +21,4 @@ class CinemaView(
 
     @Column(name = "view_count")
     val viewCount: Int? = 0,
-)
+) : Auditable()

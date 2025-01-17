@@ -2,22 +2,15 @@ package com.funtikov.lcinema.entity
 
 import jakarta.persistence.*
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Entity
 @Table(name = "viewer")
-class Viewer(
+data class Viewer(
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "viewer_id_seq")
     @SequenceGenerator(name = "viewer_id_seq", sequenceName = "viewer_id_seq", allocationSize = 1)
-    var id: Long? = null,
-
-    @Column(name = "created", updatable = false)
-    var created: LocalDateTime? = null,
-
-    @Column(name = "modified")
-    var modified: LocalDateTime? = null,
+    val id: Long? = null,
 
     @Column(name = "first_name")
     var firstName: String? = null,
@@ -37,7 +30,6 @@ class Viewer(
     @Column(name = "email", unique = true)
     var email: String? = null,
 
-    // Many-to-Many for viewed genres
     @ManyToMany
     @JoinTable(
         name = "viewer_genre_views",
@@ -69,16 +61,4 @@ class Viewer(
         inverseJoinColumns = [JoinColumn(name = "cinema_id")]
     )
     var favoriteCinemas: MutableList<Cinema> = mutableListOf()
-) {
-
-    @PrePersist
-    fun onCreate() {
-        created = LocalDateTime.now()
-        modified = LocalDateTime.now()
-    }
-
-    @PreUpdate
-    fun onUpdate() {
-        modified = LocalDateTime.now()
-    }
-}
+) : Auditable()

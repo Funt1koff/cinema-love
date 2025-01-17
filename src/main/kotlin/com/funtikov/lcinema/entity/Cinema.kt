@@ -3,8 +3,8 @@ package com.funtikov.lcinema.entity
 import jakarta.persistence.*
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-abstract class Cinema(
+@Table(name = "cinema")
+data class Cinema(
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -13,6 +13,10 @@ abstract class Cinema(
 
     @Column(name = "title", nullable = false)
     var title: String? = null,
+
+    @OneToOne(orphanRemoval = true, cascade = [CascadeType.DETACH])
+    @JoinColumn(name = "cinema_type_id", referencedColumnName = "id")
+    var cinemaType: CinemaType? = null,
 
     @Column(name = "description", nullable = false)
     var description: String? = null,
@@ -33,4 +37,5 @@ abstract class Cinema(
     )
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.REFRESH])
     var tags: MutableList<Genre>? = mutableListOf()
-)
+
+) : Auditable()

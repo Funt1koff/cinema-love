@@ -5,6 +5,7 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "genre")
 class Genre(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "genre_id_seq", sequenceName = "genre_id_seq", allocationSize = 1)
@@ -25,4 +26,4 @@ class Genre(
     @ManyToMany(mappedBy = "genreFavorites")
     var viewersFavorited: MutableList<Viewer> = mutableListOf()
 
-)
+) : Auditable()

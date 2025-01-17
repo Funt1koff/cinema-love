@@ -1,8 +1,8 @@
 package com.funtikov.lcinema.repository
 
-import com.funtikov.lcinema.entity.Cinema
+import com.funtikov.lcinema.entity.CinemaType
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CinemaRepository : JpaRepository<Cinema, Long>
+interface CinemaTypeRepository : JpaRepository<CinemaType, Long>
